@@ -1,0 +1,72 @@
+493. Reverse Pairs
+
+Remove the minimum number of invalid parentheses in order to make the input string valid. Return all possible results.
+Area of max rectangle when one can swap columns.--> Contest
+1696. Jump Game VI
+1697. Checking Existence of Edge Length Limited Paths
+SF Graph one
+1703. Minimum Adjacent Swaps for K Consecutive Ones
+1713. Minimum Operations to Make a Subsequence
+1718. Construct the Lexicographically Largest Valid Sequence
+1722. Minimize Hamming Distance After Swap Operations
+1723. Find Minimum Time to Finish All Jobs
+
+/*
+
+
+public class MinAbsSum {
+
+    public int minAbsDifference(int[] nums, int goal) {
+        int minS = Math.abs(goal);
+        Set<Integer> L = getAllSet(nums,0,nums.length/2);
+        Set<Integer> R = getAllSet(nums,nums.length/2,nums.length);
+        List<Integer> RR = new ArrayList<>(R);
+        Collections.sort(RR);
+
+        int sLow = RR.get(0);
+        int sHigh = RR.get(RR.size()-1);
+        for(int i : L) {
+            int min = Math.min(i+minS,i-minS);
+            int max = Math.max(i+minS,i-minS);
+            if ((min >=  sHigh) || (max <= sLow)) continue;
+            int l = 0; int h = RR.size()-1;
+            while (l <= h) {
+                int mid = l + (h-l)/2;
+                int v = RR.get(mid);
+                minS = Math.min(minS,Math.abs(v-i));
+                if (v >= i) {
+                    h = mid-1;
+                } else {
+                    l = mid+1;
+                }
+            }//end of while
+
+        }//end of for
+        return minS;
+    }
+
+    private Set<Integer> getAllSet(int[] nums,int beg,int end) {
+        Set<Integer> TS = new HashSet<>();
+        for(int j= beg;j< end;j++) {
+            int i = nums[j];
+            Set<Integer> nSet = new HashSet<>();
+            nSet.addAll(TS);
+            for(int ii : TS) {
+                int v = ii+i;
+                nSet.add(v);
+            }
+            nSet.add(i);
+            TS = nSet;
+        }
+        return TS;
+    }
+
+    public static void main(String[] args) {
+        MinAbsSum mas = new MinAbsSum();
+        int[] A = {5,-7,3,5};
+        System.out.println(mas.minAbsDifference(A,6));
+    }
+}
+
+
+*/
